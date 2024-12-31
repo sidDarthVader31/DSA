@@ -1,6 +1,9 @@
 /**
+ * https://leetcode.com/problems/valid-palindrome
  * @param {string} s
  * @return {boolean}
+ * runtime :Beats 98.59%,
+ * memory: beats 64.34
  */
 var isPalindrome = function(s) {
 s = s.toLowerCase();
