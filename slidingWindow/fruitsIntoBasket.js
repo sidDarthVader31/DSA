@@ -24,3 +24,27 @@ var totalFruit = function(fruits) {
     }
     return maxFruits;
 };
+
+
+const sol = (arr, k) =>{
+  let maxSum = 0;
+  let sum = 0;
+  for(let i = 0;i< k;i++){
+    sum = sum + arr[i];
+  };
+  maxSum = Math.max(sum, maxSum);
+  console.log(`maxSum:`, maxSum);
+  for(let i = k;i< arr.length;i++){
+    console.log(`i:${i}, i-k:${i-k}`)
+
+    sum = sum + arr[i] - arr[i-k];
+    console.log(`sum now:`, sum);
+    maxSum = Math.max(sum, maxSum);
+    console.log(`maxSZum,:`, maxSum)
+  }
+  return maxSum;
+}
+
+
+
+console.log(sol([2,3,5,1,6], 2))
