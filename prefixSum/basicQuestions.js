@@ -1,4 +1,4 @@
-let arr = [23,2,4,6,7]
+let arr = [1, 2, 3, 4, 1, 1, 2, -1, 3]
 let prefix = [arr[0]]
 const calculatePrefixSum = () =>{
   for(let i = 1;i< arr.length;i++){
@@ -35,17 +35,16 @@ const getEquilibriumIndex = () =>{
 }
 
 const noOfSubArrays = (num) =>{
-  let map = {}
+  let map ={}
+  map[0] = 1;
   let prefixSum = 0;
-  // map[0] =1;
   let count = 0;
   for(let i =0;i< arr.length;i++){
-    prefixSum = prefixSum + arr[i];
-    count = count + (map[prefixSum-num] ||0);
-    map[prefixSum] = (map[prefixSum] ||0) + 1;
+    prefixSum = prefixSum + arr[i]
+    count = count + (map[prefixSum-num]||0);
+    map[prefixSum] = (map[prefixSum]||0) +1;
   }
-  console.log(`map:`, map)
-  return count;
+  return count
 }
 
 const subArraysWithAGivenSum = (num) =>{
@@ -71,6 +70,6 @@ const subArraysWithAGivenSum = (num) =>{
 }
 
 
-console.log(`count of subarrays:`, noOfSubArrays(6))
+console.log(`count of subarrays:`, noOfSubArrays(5))
 
-console.log(`equilibrium index:`, subArraysWithAGivenSum(6))
+console.log(`equilibrium index:`, subArraysWithAGivenSum(5))
