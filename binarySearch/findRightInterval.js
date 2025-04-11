@@ -10,7 +10,7 @@ var findRightInterval = function(intervals) {
     for(let i = 0;i< intervals.length;i++){
         map[intervals[i]] = i;
     }
-    intervals1  = sort([...intervals])
+   let intervals1 = [...intervals].sort((a, b) => a[0] - b[0]) // Built-in JS sort
     for(let i = 0;i< intervals.length;i++){
         let originalIndex = map[binarySearch(intervals1, intervals[i])]
         if(originalIndex == undefined){
@@ -38,17 +38,4 @@ var findRightInterval = function(intervals) {
         }
     }
     return result == -1 ? [-1,-1]: arr[result]
- }
- const sort = (arr) =>{
-    for(let i = 0;i< arr.length;i++){
-        for(let j = i+1;j< arr.length;j++){
-            if(arr[i][0] > arr[j][0]){
-                //swap 
-                let temp = arr[i];
-                arr[i] = arr[j]
-                arr[j] = temp;
-            }
-        }
-    }
-    return arr;
  }
