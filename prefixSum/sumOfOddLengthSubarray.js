@@ -6,7 +6,6 @@
 var sumOddLengthSubarrays = function(arr) {
     let prefix = [];
     let sum = 0;
-    let result =[];
     for(let i = 0;i< arr.length;i++){
         sum = sum + arr[i];
         prefix.push(sum)

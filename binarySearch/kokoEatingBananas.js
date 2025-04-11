@@ -1,6 +1,7 @@
 /**
  * link: https://leetcode.com/problems/koko-eating-bananas/
  * @param {number[]} piles
+ *
  * @param {number} h
  * @return {number}
  */
@@ -9,7 +10,6 @@ var minEatingSpeed = function(piles, h) {
     let right = Math.max(...piles)
     while(left <= right){
         let mid = Math.floor((left+right)/2);
-        let midVal = piles[mid];
         if(canEatFeasibly(piles, h, mid)){
             right = mid-1
         }
