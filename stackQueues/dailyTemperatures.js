@@ -4,16 +4,7 @@
  * @return {number[]}
  */
 var dailyTemperatures = function(temperatures) {
-    // const stack = [];
-    // for(let i =0;i< temperatures.length;i++){
-    //     while(temperatures[i]<= stack[stack.length-1]){
-    //         stack.pop();
-    //     }
-    //     stack.push(temperatures[i])
-    // }
-    // return stack;
-
-const output = []
+    const output = []
     for(let i = 0;i< temperatures.length;i++){
         let count = 0;
         for(let j =i+1;j< temperatures.length;j++){
@@ -38,7 +29,6 @@ var dailyTemperatures = function(temperatures) {
     const result = [];
     for(let i =temperatures.length-1;i >=0;i--){
        const element = temperatures[i];
-       const count = 0;
        while(element >= stack[stack.length-1]?.element){
         stack.pop();
        }
