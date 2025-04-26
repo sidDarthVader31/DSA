@@ -24,7 +24,7 @@ var dailyTemperatures = function(temperatures) {
  * @return {number[]}
  * optimized solution using monotonic stack
  */
-var dailyTemperatures = function(temperatures) {
+var dailyTemperaturesOptimized = function(temperatures) {
     const stack = [];
     const result = [];
     for(let i =temperatures.length-1;i >=0;i--){
@@ -42,3 +42,6 @@ var dailyTemperatures = function(temperatures) {
     }
     return result;
 };
+
+
+console.log(`result:`, dailyTemperaturesOptimized([73,74,75,71,69,72,76,73]))

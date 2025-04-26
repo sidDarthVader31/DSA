@@ -2,7 +2,6 @@
 
 class MinStack {
     private stack: {val: number, min: number}[];
-    private secondMin: number;
     constructor() {
         this.stack = [];
     }
@@ -17,7 +16,7 @@ class MinStack {
     }
 
     pop(): void {
-       const num = this.stack.pop();
+       this.stack.pop();
     }
 
     top(): number {  
