@@ -1,8 +1,8 @@
 /**
- * link: https://leetcode.com/problems/daily-temperatures/
+ * link: https://leetcode.com/problems/daily-temperatures
  * @param {number[]} temperatures
  * @return {number[]}
- */
+ **/
 var dailyTemperatures = function(temperatures) {
     const output = []
     for(let i = 0;i< temperatures.length;i++){
@@ -44,4 +44,22 @@ var dailyTemperaturesOptimized = function(temperatures) {
 };
 
 
-console.log(`result:`, dailyTemperaturesOptimized([73,74,75,71,69,72,76,73]))
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function(temperatures) {
+    let stack = [];
+    let result = [];
+    for(let i = 0;i< temperatures.length;i++){
+        result[i]= 0;
+    }
+    for(let i = 0;i< temperatures.length;i++){
+        while(stack.length > 0 && temperatures[i] > temperatures[stack[stack.length-1]]){
+            let index= stack.pop();
+            result[index] = i - index;
+        }
+        stack.push(i);
+    }
+    return result;
+};
