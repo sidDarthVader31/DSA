@@ -44,16 +44,14 @@ var rightSideViewBFS = function(root) {
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideViewDFS = function(root, output = [], level=0, map={} ) {
+var rightSideViewDFS = function(root, output = [], level=0 ) {
     if(!root){
         return output;
     }
     level++;
-    if(!map[level]){
-          output.push(root.val);
-        map[level] =1;
-       
+    if(level > output.length){
+      output.push(root.val); 
     }
-     rightSideViewDFS(root.right, output, level, map);
-     return rightSideViewDFS(root.left, output, level, map);
+     rightSideViewDFS(root.right, output, level);
+     return rightSideViewDFS(root.left, output, level);
 };
