@@ -11,7 +11,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function(root) {
+var rightSideViewBFS = function(root) {
     if(!root){
         return [];
     }
@@ -30,4 +30,30 @@ var rightSideView = function(root) {
         }
     }
     return output;
+};
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var rightSideViewDFS = function(root, output = [], level=0, map={} ) {
+    if(!root){
+        return output;
+    }
+    level++;
+    if(!map[level]){
+          output.push(root.val);
+        map[level] =1;
+       
+    }
+     rightSideViewDFS(root.right, output, level, map);
+     return rightSideViewDFS(root.left, output, level, map);
 };
