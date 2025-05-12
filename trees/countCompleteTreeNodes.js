@@ -19,12 +19,10 @@ var countNodes = function(root) {
 
 var countNumber = function(root) {
     if(!root){
-        console.log(`count at end:${count}`)
         return count;
     }
     //preorder traversal 
     count = count +1;
-    console.log(`at node:${root.val}, count:${count}`)
-     countNumber(root.left, count);
+    countNumber(root.left, count);
     return countNumber(root.right, count)
 }
