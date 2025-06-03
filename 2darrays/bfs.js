@@ -14,7 +14,7 @@ const bfs = (arr) =>{
   let queue = [];
   let row1= Math.floor(arr.length/2);
   let column1 = Math.floor(arr[0].length/2);
-  queue.push([row1,column1]);
+  queue.push([0,0]);
 
   while(queue.length >0){
     let pos = queue.shift();
