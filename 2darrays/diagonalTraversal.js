@@ -42,3 +42,39 @@ var findDiagonalOrder = function(matrix) {
 
     return result;
 };
+
+
+
+/**
+ *  * @param {number[][]} mat
+ *   * @return {number[]}
+ *    */
+var findDiagonalOrder = function(matrix) {
+      let map = {}
+      const result = []
+      for(let i =0;i<matrix.length;i++){
+                for(let j = 0;j< matrix[0].length;j++){
+                              let sum = i+j;
+                              if(!map[sum]){
+                                                map[sum] =[];
+                                            }
+                              map[sum].push(matrix[i][j])
+                          }
+            }
+      for(const key of Object.keys(map)){
+                if(key%2 == 0){
+                              result.push(...map[key].reverse())
+                          }
+                else{
+                              result.push(...map[key]);
+                          }
+            }
+      return result;
+};
+                }
+                }
+      }
+                              }
+                }
+      }
+}
