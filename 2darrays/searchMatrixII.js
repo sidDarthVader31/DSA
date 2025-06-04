@@ -30,3 +30,27 @@ var searchMatrix = function(matrix, target) {
     }
     return false
 };
+
+
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrixOptimized = function(matrix, target) {
+    let row = 0;
+    let col = matrix[0].length-1;
+    while(row < matrix.length && col >=0){
+        if(matrix[row][col] == target){
+            return true;
+        }
+        if(target < matrix[row][col]){
+            col--;
+        }
+        else{
+            row++
+        }
+    }
+    return false;
+};
