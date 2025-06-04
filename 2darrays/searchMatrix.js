@@ -1,49 +1,84 @@
 /**
- * link :
- * https://leetcode.com/problems/search-a-2d-matrix/
  * @param {number[][]} matrix
  * @param {number} target
  * @return {boolean}
  */
 var searchMatrix = function(matrix, target) {
-    let mid = -1;
     let left = 0;
     let right = matrix.length-1;
-
-    while(left<= right){
-         mid = Math.floor((left+right)/2);
-        let midLength = matrix[mid].length;
-        if(target <= matrix[mid][midLength-1] && target >= matrix[mid][0]){
-            break;
-        }
-        else if (target < matrix[mid][0]){
-            right = mid-1;
-        }
-        else{
-            left = mid+1;
-        }
-    }
-    if(mid == -1){
-        return false;
-    }
-    return search(matrix[mid], target)
-};
-
-const search = (nums, target)=>{
-    let left = 0;
-    let right = nums.length -1 ;
-
-    while(left<=right){
+    while(left <= right){
         let mid = Math.floor((left+right)/2);
-        if(nums[mid]==target){
-            return true;
-        }
-        else if (target > nums[mid]){
+        let midRow = matrix[mid];
+        if(target > midRow[midRow.length-1]){
+            //need to go down 
             left = mid+1;
         }
-        else{
+        else if(target < midRow[0]){
+            //need to go up 
             right = mid-1;
         }
+        else {
+            //do binary search on midrow 
+            let l = 0;
+            let r = midRow.length-1;
+            while(l<=r){
+                let m = Math.floor((l+r)/2);
+                if(midRow[m] == target){
+                    return true;
+                }
+                else if(target > midRow[m]){
+                    l = m+1;
+                }
+                else{
+                    r = m-1;
+                }
+            }
+            return false;
+        }
     }
-    return false;
+    return false
+}
+
+
+
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix1 = function(matrix, target) {
+    let left = 0;
+    let right = matrix.length-1;
+    while(left <= right){
+        let mid = Math.floor((left+right)/2);
+        let midRow = matrix[mid];
+        if(target > midRow[midRow.length-1]){
+            //need to go down 
+            left = mid+1;
+        }
+        else if(target < midRow[0]){
+            //need to go up 
+            right = mid-1;
+        }
+        else {
+            //do binary search on midrow 
+            let l = 0;
+            let r = midRow.length-1;
+            while(l<=r){
+                let m = Math.floor((l+r)/2);
+                if(midRow[m] == target){
+                    return true;
+                }
+                else if(target > midRow[m]){
+                    l = m+1;
+                }
+                else{
+                    r = m-1;
+                }
+            }
+            return false;
+        }
+    }
+    return false
 }
