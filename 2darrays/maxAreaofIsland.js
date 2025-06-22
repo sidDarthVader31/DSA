@@ -11,6 +11,9 @@ var maxAreaOfIsland = function(grid) {
     });
     for(let row = 0;row< grid.length;row++){
         for(let col=0;col< grid[0].length;col++){
+          if(grid[row][col] == 0){
+            continue;
+          }
             let area = dfs(grid, row, col, seen);
             maxArea = Math.max(area, maxArea);
         }
@@ -29,3 +32,5 @@ const dfs = (grid, row, col, seen) =>{
     dfs(grid, row+1, col, seen) +
     dfs(grid, row, col-1, seen) +1;
 }
+
+//1. Minimum Window Substring , Palindrome Partitioning
