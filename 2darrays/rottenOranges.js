@@ -25,7 +25,6 @@ var orangesRotting = function(grid) {
     if(queue.length ==0){
         return -1;
     }
-    //console.log(`fresh Count:`, freshCount)
     return bfs(queue, grid,seen, freshCount);
 };
 
@@ -56,6 +55,5 @@ const bfs = (queue, grid,seen, freshCount) =>{
 
     if (rottedThisMinute) count++;
 }
-  //  console.log(`count minutes:`, count)
     return freshCount == 0 ? count: -1;
 }
