@@ -11,20 +11,40 @@ const adjacencyList = [
   [2]
 ]
 
+
+
+const bfs1 = () =>{
+  const seen = {};
+  let queue = [];
+  const output = [];
+  queue.push(0);
+
+  while(queue.length >0){
+    let vertex = queue.shift();
+    if(seen[vertex]== true){
+      //already processed 
+      continue;
+    }
+    output.push(vertex);
+    seen[vertex] = true;
+    //now we need to push all vertex of vertex 
+    queue.push(...adjacencyList[vertex]);
+  }
+  return output;
+}
+
+console.log(`bfs1:`, bfs1())
 const bfs = () =>{
   const seen = {0:true};
 
   let queue = [];
   const output = [0];
   queue.push(adjacencyList[0]);
-console.log(`eueue initial:`, queue)
   while(queue.length>0){
     let list = queue.shift();
-    console.log(`list:`, list)
     for(let i = 0;i<list.length;i++){
       let vertex = list[i];
       if(seen[vertex]== true){
-        console.log(`continuing`, seen)
         continue;
       }
       seen[vertex] = true;
