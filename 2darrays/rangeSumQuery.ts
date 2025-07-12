@@ -22,7 +22,6 @@ class NumMatrix {
                 this.prefixMatrix[r][c] = this.matrix[r][c] + top+left-corner;
             }
         }
-        //console.log(`prfix:`, this.prefixMatrix);
     }
     sumRegion(row1: number, col1: number, row2: number, col2: number): number {
       let total = this.prefixMatrix[row2][col2];
