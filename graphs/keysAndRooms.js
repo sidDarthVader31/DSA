@@ -22,3 +22,26 @@ const dfs = (vertex, rooms, seen) =>{
     }
     return false;
 }
+
+
+
+//optimized 
+/**
+ * @param {number[][]} rooms
+ * @return {boolean}
+ */
+var canVisitAllRooms = function(rooms) {
+    let seen = new Set();
+    dfs1(0,rooms, seen)
+    return seen.size == rooms.length
+};
+const dfs1 = (vertex, rooms, seen) =>{
+    seen.add(vertex);
+    const list = rooms[vertex];
+    for(let i = 0;i< list.length;i++){
+        let node = list[i];
+        if(!seen.has(node)){
+            dfs(node, rooms, seen);
+        }
+    }
+}
