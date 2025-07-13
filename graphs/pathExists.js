@@ -22,18 +22,19 @@ function buildGraph(n, edges) {
 
     return graph;
 }
+
 const dfs = (vertex, edges, destination, seen) =>{
     if(vertex == destination) {
         return true;
     }
-    let flag = false;
 
     seen[vertex] = true;
     let list = edges[vertex];
     for(let i = 0;i< list.length;i++){
-        if(!seen[list[i]]){
-            flag = flag || dfs(list[i],edges, destination, seen);
+        if(!seen[list[i]] && dfs(list[i], edges, destination, seen)){
+            return true;
         }
     }
-    return flag;
+    return false;
 }
+
