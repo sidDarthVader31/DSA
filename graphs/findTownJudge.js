@@ -36,3 +36,26 @@ var findJudge = function(n, trust) {
     return -1;
 
 };
+/**
+ * @param {number} n
+ * @param {number[][]} trust
+ * @return {number}
+ */
+var findJudgeSpaceOptimized = function(n, trust) {
+    if(trust.length == 0 && n==1){
+        return 1;
+    }
+    const inDegree = new Array(n + 1).fill(0);
+    const outDegree = new Array(n + 1).fill(0)
+
+    for(const [first, second] of trust){
+        inDegree[first]++;
+        outDegree[second]++;
+    }
+    for(let i =1;i<=n;i++){
+        if(outDegree[i] == n-1 && inDegree[i]==0){
+            return i;
+        }
+    }
+    return -1;
+};
