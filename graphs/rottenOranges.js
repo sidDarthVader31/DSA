@@ -28,9 +28,6 @@ var orangesRotting = function(grid) {
 const bfs = (grid, queue, freshCount ) =>{
     let count = 0;
     const directions = [[-1, 0], [0, 1], [1, 0], [0, -1]];
-    const seen = new Array(grid.length).fill(0).map(()=>{
-        return new Array(grid[0].length).fill(0)
-    })
    while (queue.length > 0) {
     let qLength = queue.length; // number of oranges to process at this minute
     let rotted = false;
