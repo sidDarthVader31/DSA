@@ -13,7 +13,6 @@ var canFinish = function(numCourses, prerequisites) {
     for(let v=0;v<numCourses;v++){
         let queue = [];
         let seen = {};
-        let edges = graph[v];
         for(let i = 0;i< graph[v].length;i++){
             queue.push(graph[v][i]);
         }
