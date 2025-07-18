@@ -35,3 +35,39 @@ var findOrder = function(numCourses, prerequisites) {
     }
     return output.length == numCourses ?  output : []
 };
+
+
+// solution using dfs 
+const courseScheduleII = (numCourses, prerequisites) =>{
+  let graph = Array.from({length: numCourses}, ()=> []);
+
+  for(const [course, pre] of prerequisites) {
+    graph[pre].push(course);
+  }
+
+  let visited = new Array(numCourses).fill(0);
+
+  const result = [];
+  const hasCycle = false;
+
+  const dfs = (node) =>{
+    if(visited[node] == 1){
+      hasCycle = true;
+      return;
+    }
+    if(visited[node] == 2){
+      return;
+    }
+     visited[node] = 1;
+
+    for(const courses of graph[node]){
+      dfs(courses);
+    }
+    visited[node] = 2;
+    result.push(node);
+  }
+  for(let i = 0;i< numCourses;i++){
+    if(visited[i]==0)dfs(i);
+  }
+  hasCycle == true ? []: result
+}
