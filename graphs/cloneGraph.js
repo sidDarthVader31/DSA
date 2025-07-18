@@ -22,7 +22,6 @@ var cloneGraph = function(node, visited ={}) {
     visited[node.val] = clone;
     for(const neighbour of node.neighbors){
         const cloned = cloneGraph(neighbour, visited);
-        visited[neighbour.val]=cloned;
         if(cloned){
             clone.neighbors.push(cloned);
         }
