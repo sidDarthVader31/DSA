@@ -22,4 +22,23 @@ class UnionFind {
       this.parent[rootY]= rootX;
     }
   }
+
+  printParent(){
+    console.log(this.parent)
+  }
+
 }
+
+
+let uf = new UnionFind(6);
+
+uf.union(0,1);
+uf.union(1,2);
+uf.union(1,3);
+uf.union(2,3);
+
+uf.union(4,5)
+
+
+console.log(`find 1:`, uf.find(3));
+uf.printParent()
