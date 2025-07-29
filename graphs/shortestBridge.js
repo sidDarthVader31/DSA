@@ -74,3 +74,53 @@ const dfs = (row, col, grid, visited) =>{
     dfs(row, col-1, grid, visited)
     dfs(row, col+1, grid, visited);
 }
+
+
+
+//shortest bridge optimized
+var shortestBridge = function(grid) {
+    const n = grid.length;
+    const m = grid[0].length;
+    const visited = Array.from({ length: n }, () => Array(m).fill(false));
+    const queue = [];
+
+    // 1. DFS to find and mark first island
+    let found = false;
+    for (let i = 0; i < n; i++) {
+        if (found) break;
+        for (let j = 0; j < m; j++) {
+            if (grid[i][j] === 1) {
+                dfs(i, j);
+                found = true;
+                break;
+            }
+        }
+    }
+
+    function dfs(i, j) {
+        if (i < 0 || j < 0 || i >= n || j >= m || grid[i][j] !== 1 || visited[i][j]) return;
+        visited[i][j] = true;
+        grid[i][j] = '#'; // mark as part of island
+        queue.push([i, j, 0]); // prepare for BFS
+        dfs(i + 1, j);
+        dfs(i - 1, j);
+        dfs(i, j + 1);
+        dfs(i, j - 1);
+    }
+
+    // 2. BFS from all `#` cells to find the shortest path to second island
+    const directions = [[1,0], [-1,0], [0,1], [0,-1]];
+    while (queue.length) {
+        const [r, c, dist] = queue.shift();
+        for (const [dr, dc] of directions) {
+            const nr = r + dr, nc = c + dc;
+            if (nr < 0 || nc < 0 || nr >= n || nc >= m || visited[nr][nc]) continue;
+            if (grid[nr][nc] === 1) return dist;
+            visited[nr][nc] = true;
+            queue.push([nr, nc, dist + 1]);
+        }
+    }
+
+    return -1; // Should never reach here
+};
+
