@@ -44,3 +44,42 @@ const bfsWallsAndGates = (queue, grid, output) =>{
     }
   }
 }
+
+
+let rooms = [
+  [2147483647, -1,         0, 2147483647],
+  [2147483647, 2147483647, 2147483647, -1],
+  [2147483647, -1,         2147483647, -1],
+  [0,          -1,         2147483647, 2147483647]
+];
+
+const wallAndGatesSimulate = (grid) =>{
+  let queue = [];
+  for(let row =0;row< grid.length;row++){
+    for(let col=0;col<grid[0].length;col++){
+      if(grid[row][col]==0){
+        queue.push([row,col,0]);
+      }
+    }
+  }
+  const directions = [[-1,0],[0,1],[1,0],[0,-1]];
+  while(queue.length>0){
+    const [row, col, dist] = queue.shift();
+
+    for(const [dr,dc] of directions){
+      const nr = row+dr;
+      const nc = col+dc;
+      if(nr<0 || nc<0 || nr >= grid.length || nc >= grid[0].length 
+      || grid[nr][nc]==-1 || grid[nr][nc]==0){
+        continue;
+      }
+      if(grid[nr][nc]> dist+1){
+        grid[nr][nc]= dist+1;
+        queue.push([nr,nc,grid[nr][nc]])
+      }
+    }
+  }
+  console.log(`final grid:`, grid);
+}
+
+console.log(`walls and gates leetcode:`, wallAndGatesSimulate(rooms));
