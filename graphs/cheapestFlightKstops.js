@@ -1,0 +1,34 @@
+/**
+ * link: https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
+ * @param {number} n
+ * @param {number[][]} flights
+ * @param {number} src
+ * @param {number} dst
+ * @param {number} k
+ * @return {number}
+ */
+var findCheapestPrice = function(n, flights, src, dst, k) {
+    let graph = new Array(n).fill(0).map(()=>[]);
+
+    for(const [u,v,c] of flights){
+        graph[u].push([v,c])
+    }
+    let queue = [];
+    queue.push([src, 0, 0]);
+
+    let dist = new Array(n).fill(Infinity);
+    dist[src]=0;
+
+    while(queue.length>0){
+        const [node, cost, stop] = queue.shift();
+        if(stop>k)continue;
+
+        for(const [edge,c] of graph[node]){
+            if(dist[edge]> cost+c){
+                dist[edge]= cost+c;
+                queue.push([edge, dist[edge], stop+1])
+            }
+        }
+    }
+    return dist[dst] == Infinity ?-1: dist[dst]
+}
