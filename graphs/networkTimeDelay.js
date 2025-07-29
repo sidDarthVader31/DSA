@@ -48,11 +48,16 @@ var networkDelayTime = function(times, n, k) {
     distance[k-1]=0;
 
     for(let i =1;i<n;i++){
+      let hasUpdated = false;
         for(const [u,v,t] of times){
             if((distance[u-1]+ t) < distance[v-1]){
                 distance[v-1] = distance[u-1]+t;
+              hasUpdated = true;
             }
         }
+      if(!hasUpdated){
+        break;
+      }
     }
     const max = Math.max(...distance);
     return max == Infinity ? -1: max
