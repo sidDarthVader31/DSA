@@ -11,10 +11,8 @@ var shortestBridge = function(grid) {
     let result =Infinity;
     for(let row =0;row<grid.length;row++){
         for(let col=0;col<grid[0].length;col++){
-             //console.log(`checking for row:${row}, col:${col}`)
             if(grid[row][col]==1){
                 const dist =  bfs(row,col, grid);
-              //  console.log(`for row:${row}, col:${col}, dist:`, dist)
                 if(dist!=undefined){
                     result = Math.min(result,dist)
                 }
