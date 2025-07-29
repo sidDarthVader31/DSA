@@ -32,3 +32,28 @@ var networkDelayTime = function(times, n, k) {
     let max = Math.max(...distances);
     return max==Infinity ? -1: max;
 };
+
+
+
+
+/**
+ * network time delay solution with bellmann ford algorithm
+ * @param {number[][]} times
+ * @param {number} n
+ * @param {number} k
+ * @return {number}
+ */
+var networkDelayTime = function(times, n, k) {
+    let distance = new Array(n).fill(Infinity);
+    distance[k-1]=0;
+
+    for(let i =1;i<n;i++){
+        for(const [u,v,t] of times){
+            if((distance[u-1]+ t) < distance[v-1]){
+                distance[v-1] = distance[u-1]+t;
+            }
+        }
+    }
+    const max = Math.max(...distance);
+    return max == Infinity ? -1: max
+};
