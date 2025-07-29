@@ -32,3 +32,29 @@ var findCheapestPrice = function(n, flights, src, dst, k) {
     }
     return dist[dst] == Infinity ?-1: dist[dst]
 }
+
+
+/**
+ * solution with bellmann ford algorithm
+ * @param {number} n
+ * @param {number[][]} flights
+ * @param {number} src
+ * @param {number} dst
+ * @param {number} k
+ * @return {number}
+ */
+var findCheapestPrice = function(n, flights, src, dst, k) {
+    let distance = new Array(n).fill(Infinity);
+    distance[src] =0;
+
+    for(let i =0;i<=k;i++){
+        let temp = distance.slice(); 
+        for(const [u,v,c] of flights){
+            if(distance[u]!= Infinity && distance[u]+c < temp[v]){
+                temp[v] = distance[u]+c
+            }
+        }
+        distance = temp;
+    }
+    return distance[dst] === Infinity ? -1 : distance[dst];
+}
