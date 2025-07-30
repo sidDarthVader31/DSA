@@ -1,4 +1,5 @@
 /**
+ * link: https://leetcode.com/problems/min-cost-to-connect-all-points/
  * @param {number[][]} points
  * @return {number}
  */
