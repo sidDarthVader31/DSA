@@ -4,16 +4,16 @@
  * @return {number}
  */
 var climbStairs = function(n) {
-  let steps = new Array(n).fill(0)
-
   if(n == 1)return 1;
   if(n==2) return 2;
-  steps[0]=1;
-  steps[1]=2;
+  let first = 1;
+  let second = 2;
   for(let i=2;i< n;i++){
-    steps[i]= steps[i-1] + steps[i-2];
+    let temp = second;
+    second = second+ first;
+    first=temp;
   }
-  return steps[n-1]
+  return second;
 };
 
 
