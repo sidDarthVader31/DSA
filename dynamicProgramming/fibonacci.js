@@ -7,6 +7,7 @@ const fibonacci = (number) =>{
     if(n ==1) return 1;
     if(n==2) return 1;
     if(fib[n]!=0){
+      console.log(`memoization used`)
       return fib[n];
     }
     return fib[n] = dp(n-1) + dp(n-2);

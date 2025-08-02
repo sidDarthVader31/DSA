@@ -7,13 +7,14 @@ link: https://leetcode.com/problems/min-cost-climbing-stairs/
 var minCostClimbingStairs = function(cost) {
     const n = cost.length;
     let min = new Array(n+1).fill(undefined);
-
-    min[0]= cost[0];
-    min[1]= cost[1]
+    let first = min[0];
+    let second = min[1];
     for(let i =2;i<=n;i++){
-        min[i]= (cost[i]||0)+Math.min(min[i-1], min[i-2]);
+      let temp = second;
+      second = (cost[i]||0) + Math.min(first, second)
+      first = temp;
     }
-    return min[n];
+    return second;
 };
 
 
