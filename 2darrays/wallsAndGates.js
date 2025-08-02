@@ -79,7 +79,7 @@ const wallAndGatesSimulate = (grid) =>{
       }
     }
   }
-  console.log(`final grid:`, grid);
+  return grid;
 }
 
 console.log(`walls and gates leetcode:`, wallAndGatesSimulate(rooms));
