@@ -15,3 +15,30 @@ var climbStairs = function(n) {
   }
   return steps[n-1]
 };
+
+
+
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairsMemoization = function(n) {
+  let steps = new Array(n).fill(undefined);
+
+  const dp = (n) =>{
+    if(n==0){
+        return 1;
+    }
+    if(n==1){
+        return 2;
+    }
+    if(steps[n]!=undefined){
+        return steps[n];
+    }
+    return steps[n] = dp(n-1) + dp(n-2)
+  }
+  return dp(n-1)
+};
+
+
