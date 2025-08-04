@@ -35,8 +35,10 @@ const ninja = (n, arr) => {
     }
     return maxPoints[i][prev] = maxI
   }
+  const data =  dp(n-1,3);
 
-  return dp(n-1,3);
+  console.log(`maxpoints:`, maxPoints)
+  return data;
 }
 
 const a = [[10,40,70],[20,50,80],[30,60,90]];
