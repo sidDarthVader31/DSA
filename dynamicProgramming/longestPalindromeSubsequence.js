@@ -23,3 +23,28 @@ var longestPalindromeSubseq = function(s) {
     }
     return dp[n][n]
 };
+
+
+
+/**
+ * memoization - without reversing the string
+ * @param {string} s
+ * @return {number}
+ */
+var longestPalindromeSubseq = function(s) {
+    let n = s.length
+    const dp = new Array(n+1).fill(0).map(()=>{
+        return new Array(n+1).fill(undefined)
+    });
+
+    const f = (i,j) =>{
+        if(i>j)return 0;
+        if(i==j) return 1;
+        if(dp[i][j]!= undefined) return dp[i][j]
+        if(s[i] == s[j]){
+            return dp[i][j] = 2 + f(i+1,j-1);
+        }
+        return dp[i][j] = Math.max(f(i+1, j), f(i, j-1))
+    }
+    return f(0, n-1)
+};
