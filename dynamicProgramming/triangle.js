@@ -30,3 +30,30 @@ var minimumTotal = function(triangle) {
     }
     return min;
 };
+
+
+
+/**
+ * tabulation method
+ * @param {number[][]} triangle
+ * @return {number}
+ */
+var minimumTotal = function(triangle) {
+    const rows = triangle.length;
+    const cols = triangle[rows-1].length;
+    if(rows == 1 && cols == 1) return triangle[0][0]
+    const dp = new Array(rows+1).fill(0)
+    .map(()=>{
+        return new Array(cols+1).fill(Infinity)
+    });
+
+    dp[0][0]= triangle[0][0];
+    dp[1][0] = dp[0][0] + triangle[1][0]
+    for(let i =1;i< rows;i++){
+        dp[i][0] = triangle[i][0] + dp[i-1][0]
+        for(let j =1;j< triangle[i].length;j++){
+            dp[i][j] = triangle[i][j] + Math.min(dp[i-1][j], dp[i-1][j-1])
+        }
+    }
+    return Math.min(...dp[rows-1])
+};
