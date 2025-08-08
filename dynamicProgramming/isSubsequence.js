@@ -19,3 +19,22 @@ var isSubsequence = function(s, t) {
     }
     return dp[m][n] === m;
 };
+
+
+
+/**
+ * two pointer solution
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function(s, t) {
+    let left = 0;
+    for(let right=0;right<t.length;right++){
+        if(s[left] == t[right]){
+            left++;
+        }
+    }
+    return left == s.length
+};
+
