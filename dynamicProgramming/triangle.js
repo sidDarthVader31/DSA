@@ -23,7 +23,7 @@ var minimumTotal = function(triangle) {
         dp.set(key,min);
         return min;
     }
-
+  f(rows-2, triangle[rows-2].length)
     let min=Infinity;
     for(let i = 0;i< triangle[rows-1].length;i++){
         min= Math.min(min, f(rows-1,i));
