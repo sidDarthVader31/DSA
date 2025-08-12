@@ -12,7 +12,7 @@ var minCostClimbingStairs = function(cost) {
     for(let i =2;i<=n;i++){
       let temp = second;
       second = (cost[i]||0) + Math.min(first, second)
-      first = temp;
+      first = second;
     }
     return second;
 };
@@ -39,5 +39,31 @@ const dp = (cost, min, n) => {
         return min[n];
     }
     return min[n]= (cost[n]||0) + Math.min(dp(cost,min,n-1), dp(cost, min,n-2))
-}:w
+}
 
+
+/**
+    link:https://leetcode.com/problems/decode-ways/
+    space optimized tabulation
+ * @param {string} s
+ * @return {number}
+ */
+var numDecodings = function(s) {
+    const n = s.length;
+    let second = 1; 
+    let first = s[n-1] =='0'?0:1
+    for(let i = n-2;i>=0;i--){
+        let current = 0;
+        if(s[i]!='0'){
+            current= first;
+            const num = Number(`${s[i]}${s[i+1]}`);
+            if(num>=10 && num<=26){
+                current = current+ second;
+                }
+            }
+            second = first;
+            first = current;
+            
+    }
+   return first;
+};
