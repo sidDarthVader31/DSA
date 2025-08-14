@@ -50,3 +50,29 @@ var wordBreak = function(s, wordDict) {
 
     return dp[0];
 };
+
+
+/**
+ * word break - tabulation optimized
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+var wordBreak = function(s, wordDict) {
+    const dp = new Array(s.length+1).fill(false);
+    const set = new Set(wordDict);
+    dp[s.length]= true;
+    const maxLength = Math.max(...wordDict.map(w => w.length));
+    const n = s.length;
+    for(let i = n-1;i>=0;i--){
+        for(let len =1;len<=maxLength && i+len <=n;len++){
+            const substring = s.substring(i,i+len)
+            if(set.has(substring) && dp[i+len]){
+                dp[i]= true;
+                break;
+            }
+        }
+    }
+
+    return dp[0];
+};
