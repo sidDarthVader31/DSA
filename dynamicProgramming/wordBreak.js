@@ -26,3 +26,27 @@ var wordBreak = function(s, wordDict) {
 
     return f(0);
 };
+
+
+/**
+ * tabulation approach
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+var wordBreak = function(s, wordDict) {
+    const dp = new Array(s.length+1).fill(false);
+    dp[s.length]= true;
+    for(let i = s.length;i>=0;i--){
+        for(const word of wordDict){
+            let len = word.length;
+            if(i+word > s.length)continue;
+            const substring = s.substring(i, i + len)
+            if(substring == word && dp[i+len]){
+                dp[i] = true;
+            }
+        }
+    }
+
+    return dp[0];
+};
