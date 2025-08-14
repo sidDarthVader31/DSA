@@ -40,7 +40,7 @@ var wordBreak = function(s, wordDict) {
     for(let i = s.length;i>=0;i--){
         for(const word of wordDict){
             let len = word.length;
-            if(i+word > s.length)continue;
+            if(i+len > s.length)continue;
             const substring = s.substring(i, i + len)
             if(substring == word && dp[i+len]){
                 dp[i] = true;
