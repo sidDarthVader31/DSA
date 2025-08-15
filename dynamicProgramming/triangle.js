@@ -23,7 +23,6 @@ var minimumTotal = function(triangle) {
         dp.set(key,min);
         return min;
     }
-  f(rows-2, triangle[rows-2].length)
     let min=Infinity;
     for(let i = 0;i< triangle[rows-1].length;i++){
         min= Math.min(min, f(rows-1,i));
@@ -56,4 +55,27 @@ var minimumTotal = function(triangle) {
         }
     }
     return Math.min(...dp[rows-1])
+};
+
+
+
+/**
+ * triangle space optimized tabulation
+ * @param {number[][]} triangle
+ * @return {number}
+ */
+var minimumTotal = function(triangle) {
+    const rows = triangle.length;
+    const cols = triangle[rows-1].length;
+    const dp = [...triangle[rows-1]];
+
+    for(let i =rows-2;i>=0;i--){
+        for(let j=0;j<=i;j++){
+            dp[j] = triangle[i][j] + Math.min(
+                dp[j],
+                dp[j+1]
+            )
+        }
+    }
+    return dp[0]
 };
