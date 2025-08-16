@@ -51,3 +51,29 @@ var maxProfit = function(prices) {
     }
     return f(0,-1)
 };
+
+
+
+/**
+ *  tabulation approach
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    // [7,1,5,3,6,4]
+    const n = prices.length
+    const dp  = new Array(n+1).fill(0).map(()=> {
+        return new Array(2).fill(0);
+    });
+    for(let i = n-1;i>=0;i--){
+        dp[i][0] = Math.max(
+            -prices[i] + dp[i+1][1],
+            dp[i+1][0]
+        );
+        dp[i][1] = Math.max(
+            prices[i] + dp[i+1][0],
+            dp[i+1][1]
+        );
+    }
+    return dp[0][0]
+};
