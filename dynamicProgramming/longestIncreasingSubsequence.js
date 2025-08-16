@@ -28,3 +28,31 @@ var lengthOfLIS = function(nums) {
 
     return f(n-1, -1)
 };
+
+
+
+/**
+ * tabulation approach
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function(nums) {
+    const n = nums.length;
+    const dp = new Array(n+1).fill(0).map(()=>{
+        return new Array(n+1).fill(0);
+    });
+
+    //dp[i][prev] -> lis from i to n where prev is the last picked  element's index
+
+    for(let i = n-1;i>=0;i--){
+        for(let j =i-1;j>=-1;j--){
+            let skip = dp[i+1][j+1];
+            let pick = 0;
+            if(j==-1 || nums[i]> nums[j]){
+                pick = dp[i+1][i+1]+1;
+            }
+            dp[i][j+1] = Math.max(skip, pick)
+        }
+    }
+    return dp[0][0];
+};

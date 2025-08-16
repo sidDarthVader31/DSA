@@ -119,6 +119,10 @@ const tabulation = (nums) =>{
 
   dp[0][nums[0]]= true;
 
+  for(let i = 0;i< nums.length;i++){
+    dp[i][0] = true;
+  }
+
   for(let i =1;i< nums.length;i++){
     for(let s=0;s<=target;s++){
 
