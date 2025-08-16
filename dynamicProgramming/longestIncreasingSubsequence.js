@@ -56,3 +56,45 @@ var lengthOfLIS = function(nums) {
     }
     return dp[0][0];
 };
+
+
+
+
+/* * with binary search
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function(nums) {
+    const n = nums.length;
+
+    let temp = [];
+
+    temp.push(nums[0])
+
+    for(let i =1;i<n;i++) {
+        if(nums[i]> temp[temp.length-1]){
+            temp.push(nums[i])
+        }
+        else{
+            let left = 0;
+            let right = temp.length-1 
+            let index = lowerBound(left, right, temp, nums[i]);
+            temp[index] = nums[i]
+        }
+    }
+    return temp.length
+};
+
+const lowerBound = (left, right, arr, target) => {
+
+    while(left < right) {
+        let mid = Math.floor((left + right) / 2);
+       if ( arr[mid] < target){
+            left = mid+1;
+        }
+        else{
+            right = mid;
+        }
+    }
+    return left;
+}
