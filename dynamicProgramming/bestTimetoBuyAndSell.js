@@ -14,3 +14,40 @@ for (let price of prices) {
 
 return cash;
 };
+
+
+/**
+ * memoization + recursion approach
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    // [7,1,5,3,6,4]
+    const n = prices.length
+    const dp  = new Array(n).fill(0).map(()=>{
+        return new Array(2).fill(undefined)
+    });
+    const f = (i, j) => {
+        //f(i,j) -> max profile on prices[i..n-1] when bought on j 
+
+        //base case 
+        if(i== n)return 0;
+
+        if(dp[i][j+1]!= undefined) return dp[i][j+1];
+
+        
+        //buy condition 
+        if(j ==-1){
+            //i can only buy or ignore
+            let buy = -prices[i] + f(i+1, 1);
+            let ignore = f(i+1, j);
+            return dp[i][j+1] = Math.max(buy, ignore);
+        }
+        else {
+            let sell = prices[i] + f(i+1, -1);
+            let ignore = f(i+1, j);
+            return dp[i][j+1] = Math.max(sell, ignore)
+        }
+    }
+    return f(0,-1)
+};
