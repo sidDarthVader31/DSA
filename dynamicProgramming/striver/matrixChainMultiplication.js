@@ -25,4 +25,27 @@ class Solution {
          }
          return f(1, n-1);
     }
+
+  //tabulation approach
+  matrixMultiplicationTabulation(arr) {
+        // code here
+        const n = arr.length;
+         let dp = new Array(n).fill(0).map(()=>{
+             return new Array(n).fill(0);
+         })
+        // return f(1, n-1);
+         
+         for (let len = 2; len < n; len++) {  // chain length
+        for (let i = 1; i + len - 1 < n; i++) {
+            let j = i + len - 1;
+            dp[i][j] = Infinity;
+
+            for (let k = i; k < j; k++) {
+                let cost = dp[i][k] + dp[k+1][j] + arr[i-1] * arr[k] * arr[j];
+                dp[i][j] = Math.min(dp[i][j], cost);
+            }
+        }
+    }
+         return dp[1][n-1]
+    }
 }
