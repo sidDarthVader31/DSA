@@ -49,3 +49,31 @@ class Solution {
          return dp[1][n-1]
     }
 }
+
+
+/**
+ * tabulation approach
+ * @param {number} n
+ * @param {number[]} cuts
+ * @return {number}
+ */
+var minCost = function(n, cuts) {
+    cuts = cuts.sort((a,b)=>  a-b);
+    cuts = [0,...cuts,n];
+    const m = cuts.length;
+
+    const dp = new Array(m).fill(0).map(()=>{
+        return new Array(m).fill(0);
+    });
+    for(let i = m-2;i>=0;i--){
+        for(let j = i+1;j<m;j++){
+            let min = Infinity;
+            for(let k = i+1;k<j;k++){
+                let minC = dp[i][k] + dp[k][j] + cuts[j]-cuts[i];
+                min = Math.min(min, minC);
+            }
+            dp[i][j] = min == Infinity ?0: min;
+        }
+    }
+    return dp[0][m-1]
+};
