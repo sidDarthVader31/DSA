@@ -26,3 +26,30 @@ var maxCoins = function(nums) {
    }
    return f(0, n-1);
 };
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxCoins = function(nums) {
+   nums = [1, ...nums, 1];
+   const n = nums.length;
+
+   const dp = new Array(n).fill(0).map(()=> {
+    return new Array(n).fill(0);
+   });
+
+   for(let i =n-1;i>=0;i--){
+    for(let j = i+1;j<n;j++){
+        let max = -Infinity;
+        for(let k = i+1;k< j;k++){
+            let maxC = nums[i] * nums[j] * nums[k] + dp[i][k] + dp[k][j];
+            max = Math.max(max, maxC)
+        }
+        dp[i][j] = max == -Infinity ?0 : max;
+    }
+   }
+   return dp[0][n-1];
+};
