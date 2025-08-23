@@ -25,3 +25,31 @@ var minCost = function(n, cuts) {
     }
     return f(0, n);
 };
+
+
+/** memoization scalable approach
+ * @param {number} n
+ * @param {number[]} cuts
+ * @return {number}
+ */
+var minCost = function(n, cuts) {
+    cuts = cuts.sort((a,b)=>  a-b);
+    cuts = [0,...cuts,n];
+    const m = cuts.length;
+
+    const dp = new Array(m).fill(0).map(()=>{
+        return new Array(m).fill(undefined);
+    });
+    const f = (i,j) => {
+        //f(i,j) = min no of cost of cutting from i to j 
+        if(j== i+1) return 0;
+        if(dp[i][j]!= undefined) return dp[i][j];
+        let min = Infinity;
+        for(let k = i+1;k<j;k++){
+            let minC = f(i,k) + f(k,j) + cuts[j]-cuts[i]
+            min = Math.min(min, minC);
+        }
+        return dp[i][j] = min;
+    }
+    return f(0, m-1);
+};
