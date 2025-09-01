@@ -1,5 +1,5 @@
 
-link :https://www.geeksforgeeks.org/problems/minimum-platforms-1587115620/1
+//link :https://www.geeksforgeeks.org/problems/minimum-platforms-1587115620/1
 class Solution {
     findPlatform(arr, dep) {
         arr.sort((a,b)=> a-b);
