@@ -6,6 +6,7 @@
  * @param {number} dst
  * @param {number} k
  * @return {number}
+ * using Dijkstra
  */
 var findCheapestPrice = function(n, flights, src, dst, k) {
     let graph = new Array(n).fill(0).map(()=>[]);
@@ -42,6 +43,7 @@ var findCheapestPrice = function(n, flights, src, dst, k) {
  * @param {number} dst
  * @param {number} k
  * @return {number}
+ * using Bellman-Ford
  */
 var findCheapestPrice = function(n, flights, src, dst, k) {
     let distance = new Array(n).fill(Infinity);
