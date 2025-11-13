@@ -61,7 +61,7 @@ const mergeSortlist =  (head) => {
 
 const mergeList = (l1, l2) => {
   let dummy = new ListNode(0)
-  let tail = dummy;
+  let tail = new ListNode(0);
   while(l1 && l2) {
     if(l1.val < l2.val) {
       tail.next = l1;
